@@ -2,7 +2,8 @@ package ru.netology.selenium;
 
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
-import utils.DateUtils;
+import org.openqa.selenium.Keys;
+import ru.netology.selenium.utils.DateUtils;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.withText;
@@ -20,7 +21,8 @@ public class OrderCard {
         open(startUrl);
         SelenideElement form = $("[id=root]");
         form.$("[placeholder='Город']").setValue(city);
-        String futureDate = DateUtils.getAfterThreeDaysDate();
+        String futureDate = DateUtils.getFutureDateByDays(4);
+        form.$("[placeholder='Дата встречи']").doubleClick().sendKeys(Keys.BACK_SPACE);
         form.$("[placeholder='Дата встречи']").setValue(futureDate);
         form.$("[name='name']").setValue(validName);
         form.$("[name='phone']").setValue(validPhone);
